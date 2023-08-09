@@ -48,3 +48,9 @@
   border-radius: 25px;
   margin:3px
 }
+
+.nav-bar .links{
+  color:#fff;
+  background-color: red;
+  text-decoration: none;
+}

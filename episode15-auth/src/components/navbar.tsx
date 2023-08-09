@@ -4,6 +4,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import {signOut} from 'firebase/auth';
 
 
+
 export const Navbar = () =>{
     const [user] = useAuthState(auth); // update user automatically.
 
@@ -12,8 +13,16 @@ export const Navbar = () =>{
     }
     return (
         <div className="nav-bar">
+            <div className="links">
             <Link to="/" >Main</Link>
-            <Link to="/login" >Login</Link>
+            {
+                !user ? (
+                    <Link to="/login" >Login</Link>
+                ) : (
+                    <Link to="/createpost">Create Post</Link>
+                )
+            }
+            </div>
             { user && (
                 <>
                 <p>{user?.displayName}</p>
