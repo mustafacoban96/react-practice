@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import { UserContext } from "./contexts/UserContext";
 
-export const User = ({user, }) =>{
-    const change = useContext(UserContext);
-    console.log(change)
+export const User = ({user}) =>{
+    const context = useContext(UserContext);
+    
     return (
         <div style={{ background: user.color }}>
             <h3>{user.name}</h3>
@@ -12,7 +12,7 @@ export const User = ({user, }) =>{
             Color:{" "}
             <input 
             value={user.color}
-            onChange={e => change(user.id,e.target.value)}
+            onChange={e => context.chaneColor(user.id,e.target.value)}
             />
         </div>
     )

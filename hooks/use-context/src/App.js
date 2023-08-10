@@ -23,10 +23,10 @@ function App() {
   return (
 
     // UserContext.Provider tranfers the value all of its children.
-    <UserContext.Provider value={changeColor}>
+    <UserContext.Provider value={{users,changeColor}}>
       <div className="App">
         <header>Welcome!</header>
-        <UserList users={users} changeColor= {changeColor} />
+        <UserList  />
       </div>
     </UserContext.Provider>
   );
