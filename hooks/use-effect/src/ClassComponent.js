@@ -7,23 +7,27 @@ class ClassComponent extends React.Component {
     state = {
         counter:0
     }
-    
-    //old 
-    // constructor(){
-    //     super();
-    //     this.state = {
-    //         counter:0
-    //     }
-    //func
-    // this.increase = this.increase.bind(this)
+
+
+    // // it works with a once load of component.
+    // componentDidMount() {
+    //     console.log('mount works')
     // }
+    // //it works when component is refreshed.
+    // componentDidUpdate() {
+    //     console.log("state is updated and component re-render")
+    // }
+
+
+    
+    
 
     // make bind automtically with arrow func via ecma6 
     increase = () => {
         this.setState({counter: this.state.counter + 1})
     }
     render() {
-        console.log("class comp: ",this.state.counter)
+       
         return (
 
             <div className="box">

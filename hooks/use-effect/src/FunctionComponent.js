@@ -1,9 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 
 const FunctionComponent = () =>{
     const [counter,setCounter] = useState(0);
-    console.log("funct comp: " ,counter)
+
+
+    // we write empty array as second parameter
+    // to work one times. it means didmount
+    // we write state into empty array => didUpdate
+    useEffect(() =>{
+        console.log("useEffect")
+    },[counter])
+   
     return (
         <div className='box'>
             <h2>Function Component</h2>
