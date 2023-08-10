@@ -1,6 +1,7 @@
 import './App.css';
 import { UserList } from './UserList';
 import { useState } from 'react';
+import { UserContext } from './contexts/UserContext';
 
 
 //
@@ -20,10 +21,12 @@ function App() {
     )
   }
   return (
-    <div className="App">
-      <header>Welcome!</header>
-      <UserList users={users} changeColor= {changeColor} />
-    </div>
+    <UserContext.Provider value="Deger">
+      <div className="App">
+        <header>Welcome!</header>
+        <UserList users={users} changeColor= {changeColor} />
+      </div>
+    </UserContext.Provider>
   );
 }
 
