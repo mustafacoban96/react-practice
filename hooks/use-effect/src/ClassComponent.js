@@ -5,18 +5,37 @@ class ClassComponent extends React.Component {
 
     //new
     state = {
-        counter:0
+        counter:0,
+        timer: 0
     }
 
 
-    // // it works with a once load of component.
+    // it works with a once load of component.
     // componentDidMount() {
     //     console.log('mount works')
     // }
-    // //it works when component is refreshed.
+    //it works when component is refreshed.
     // componentDidUpdate() {
     //     console.log("state is updated and component re-render")
     // }
+
+
+    // componentDidMount(){
+    //     this.myTimer = setInterval(() =>{
+    //         this.setState({timer: this.state.timer +1});
+    //     },1000)
+    // }
+    // componentDidUpdate() {
+    //     console.log("Timer: ", this.state.timer);
+    // }
+
+    // componentWillUnmount(){
+    //     clearInterval(this.timer)
+    // }
+    
+
+
+
 
 
     
