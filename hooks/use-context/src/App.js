@@ -21,7 +21,9 @@ function App() {
     )
   }
   return (
-    <UserContext.Provider value="Deger">
+
+    // UserContext.Provider tranfers the value all of its children.
+    <UserContext.Provider value={changeColor}>
       <div className="App">
         <header>Welcome!</header>
         <UserList users={users} changeColor= {changeColor} />
