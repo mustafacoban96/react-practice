@@ -1,8 +1,17 @@
 import './App.css';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import { useInput } from './hooks/useInput';
 
 function App() {
+  const localStorageInputs = localStorage.getItem('inputs');
+  console.log(localStorageInputs)
+  const INITIAL_STATE = 
+    {
+      name: '',
+      age: '',
+      email: ''
+    };
+  
 
   //Before custom hook1
   // const [name,setName] = useState("");
@@ -18,7 +27,14 @@ function App() {
   // }
 
   // after custom hook
-  const [inputs,setInputs] = useInput({name: '',age: '',email: ''});
+  const [inputs,setInputs] = useInput(
+    JSON.parse(localStorageInputs) || INITIAL_STATE
+  ); 
+
+  useEffect(() =>{
+    localStorage.setItem('inputs', JSON.stringify(inputs));
+
+  },[inputs])
 
 
   return (
