@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import './App.css';
 import { ProductList } from './ProdcutList';
 import { ProductContext } from './contexts/ProductContext';
@@ -18,13 +18,15 @@ function App() {
   const [products,setProduct] = useState(data);
   const [bucket,setBukcet] = useState([]);
 
-  const addProductHandler = (product) =>{
-    setBukcet((bucket) => [...bucket,product])
-  }
 
-  const emptyBucket = () =>{
+  // we use useCallback to prevent re-render App component
+  const addProductHandler = useCallback((product) =>{
+    setBukcet((bucket) => [...bucket,product])
+  },[])
+
+  const emptyBucket = useCallback(() =>{
     setBukcet([]);
-  }
+  });
 
 
 
