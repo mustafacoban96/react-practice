@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './App.css';
 import { ProductList } from './ProdcutList';
 import { ProductContext } from './contexts/ProductContext';
+import { BucketList } from './BucketList';
 
 
 const data = [
@@ -15,19 +16,26 @@ const data = [
 
 function App() {
   const [products,setProduct] = useState(data);
-  const [addedProduct,setAddedProduct] = useState([]);
+  const [bucket,setBukcet] = useState([]);
 
+  const addProductHandler = (product) =>{
+    setBukcet((bucket) => [...bucket,product])
+  }
+
+  const emptyBucket = () =>{
+    setBukcet([]);
+  }
 
 
 
 
   return (
-    <ProductContext.Provider value={{products}}>
+    <ProductContext.Provider value={{products,addProductHandler,bucket,emptyBucket}}>
       <div className="App">
         <h1>Products</h1>
         <ProductList/>
-        <h1>Budget</h1>
-        
+        <h1>Bucket</h1>
+        <BucketList/>
       </div>
     </ProductContext.Provider>
   );
