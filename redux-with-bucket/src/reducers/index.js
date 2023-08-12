@@ -1,12 +1,10 @@
 import { data } from "../data";
 
-
 const INITIAL_STATE = {
     bookList:data,
-    cart:[]
+    cart:[],
+    
 }
-
-
 
 
 export const reducer = (state=INITIAL_STATE,action)=>{
@@ -15,6 +13,11 @@ export const reducer = (state=INITIAL_STATE,action)=>{
     switch(action.type){
         case "ADD_TO_CART":
             return {...state, cart:[...state.cart,action.payload]} //-->>> product compo
+        case "INCREASE_PRODUCT":
+            let urun = state.bookList.find(product => product.id === action.payload);
+            urun.pieces++;
+            return {...state, cart:[...state.cart]}
+
         default:
             return state;
     }

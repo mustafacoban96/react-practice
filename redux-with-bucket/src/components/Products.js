@@ -16,7 +16,7 @@ console.log(props)
         {props.bookList.map((book,index) =>(
             <div key={index} className="product">
             <div className="img-area">
-                <img src={book.image} width="100px"/>
+                <img src={book?.image} width="100px"/>
             </div>
             <div className="product-info">
                 <h1>{book.name}</h1>

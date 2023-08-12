@@ -15,9 +15,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   //we wrap app witn provider to all of components access the state. ->4
   <Provider store={store}>
-  <React.StrictMode>
+  {/* <React.StrictMode> */}
     <App />
-  </React.StrictMode>
+  {/* </React.StrictMode> */}
   </Provider>
 );
 

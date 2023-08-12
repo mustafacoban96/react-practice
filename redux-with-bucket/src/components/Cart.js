@@ -1,42 +1,48 @@
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-
-
+import { increaseProduct } from "../actions";
 
 const Cart = (props) =>{
+    const totalPrice = props.cart.reduce((total ,item) => (total += item.price),0);
+    
+
     return (
         <>
         <div className="header">
             <Link to="/" style={{textDecoration:"none", fontSize:"1.3rem" }}>Product List</Link>
            <h2>My Cart</h2>
         </div>
-        {props.cart.map((book,index) =>(
-            <div key={index} className="product">
+        <h2>Total Price: {totalPrice}</h2>
+        {props.cart.length > 0 ? props.cart.map((book) =>(
+            
+            <div key={book.id} className="product">
+               
             <div className="img-area">
                 <img src={book.image} width="100px"/>
             </div>
             <div className="product-info">
                 <h1>{book.name}</h1>
-                <h3>{book.author}</h3>
-                <h3>{book.price}</h3>
+                <h3>Author: {book.author}</h3>
+                <h3>Price: {book.price}</h3>
+                <h4>Pieces: {book.pieces}</h4>
+                <button onClick={() => props.increaseProduct(book.id)}>+</button> 
                 <button>Remove to Cart</button>
+                <button>-</button>
             </div>
+            
+            
         </div>
-        ))}
+        )) : <div>Cart is empty</div>}
             </>
     )
 }
 
-
-
-
-
 const mapStateToProps = state =>{
     return {
-      bookList: state.bookList,
       cart: state.cart
     }
 }
 
+const mapActionToProps = {increaseProduct}
 
-export default connect(mapStateToProps)(Cart);
+export default connect(mapStateToProps,mapActionToProps)(Cart);
