@@ -6,6 +6,17 @@ const INITIAL_STATE = {
     cart:[]
 }
 
+
+
+
 export const reducer = (state=INITIAL_STATE,action)=>{
-    return state;
+    // ->>>>> addToCart dispatch
+
+    switch(action.type){
+        case "ADD_TO_CART":
+            return {...state, cart:[...state.cart,action.payload]} //-->>> product compo
+        default:
+            return state;
+    }
+   
 }
