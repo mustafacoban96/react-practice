@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 
 
-const Product = () =>{
-
-
+const Product = (props) =>{
+console.log(props.bookList)
 
     return (
         <>
@@ -12,23 +12,30 @@ const Product = () =>{
            <h2>Kitap listesi</h2>
             <Link to="/cart" style={{textDecoration:"none", fontSize:"1.3rem" }}>My Cart</Link>
         </div>
-         <div class="product">
-                <div className="img-area">
-                    <img src='https://i.dr.com.tr/cache/500x400-0/originals/0000000064552-1.jpg' width="150px"/>
-                </div>
-                <div className="product-info">
-                    <h1>Simyacı</h1>
-                    <h3>Yazar: Paulo Coelho</h3>
-                    <h3>Price: $ 19.99</h3>
-                    <button>Add to Cart</button>
-                </div>
+        {props.bookList.map(book =>(
+            <div class="product">
+            <div className="img-area">
+                <img src={book.image} width="100px"/>
+            </div>
+            <div className="product-info">
+                <h1>{book.name}</h1>
+                <h3>{book.author}</h3>
+                <h3>{book.price}</h3>
+                <button>Add to Cart</button>
+            </div>
         </div>
+        ))}
             </>
     )
 }
 
 
+const mapStateToProps = state =>{
+    return {
+      bookList: state.bookList
+    }
+}
 
 
 
-export default Product;
+export default connect(mapStateToProps)(Product);

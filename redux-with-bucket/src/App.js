@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 
 
 function App(props) {
-  console.log(props.bookList)
+  
   return (
     <div className="App">
       <h1>Shopping Cart</h1>
