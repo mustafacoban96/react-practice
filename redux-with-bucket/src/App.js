@@ -7,7 +7,8 @@ import { connect } from 'react-redux';
 
 
 
-function App() {
+function App(props) {
+  console.log(props.bookList)
   return (
     <div className="App">
       <h1>Shopping Cart</h1>
@@ -23,7 +24,13 @@ function App() {
   );
 }
 
+// access the state. follwing, the function gives the state via App props.
+const mapStateToProps = state =>{
+    return {
+      bookList: state.bookList
+    }
+}
 
 // when calling connect funci it return new function.
 // and the new function take App as parameter.
-export default connect()(App);
+export default connect(mapStateToProps)(App);
