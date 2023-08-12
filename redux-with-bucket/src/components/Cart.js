@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { increaseProduct } from "../actions";
+import { increaseProduct,decreaseProduct } from "../actions";
 
 const Cart = (props) =>{
     const totalPrice = props.cart.reduce((total ,item) => (total += item.price),0);
@@ -27,7 +27,7 @@ const Cart = (props) =>{
                 <h4>Pieces: {book.pieces}</h4>
                 <button onClick={() => props.increaseProduct(book.id)}>+</button> 
                 <button>Remove to Cart</button>
-                <button>-</button>
+                <button onClick={() => props.decreaseProduct(book.id)}>-</button>
             </div>
             
             
@@ -43,6 +43,6 @@ const mapStateToProps = state =>{
     }
 }
 
-const mapActionToProps = {increaseProduct}
+const mapActionToProps = {increaseProduct,decreaseProduct}
 
 export default connect(mapStateToProps,mapActionToProps)(Cart);
