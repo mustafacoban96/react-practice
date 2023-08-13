@@ -30,6 +30,15 @@ export const reducer = (state=INITIAL_STATE,action)=>{
                 dec.pieces = 0;
             }
             return {...state, cart:[...state.cart],totalPrice:state.totalPrice}
+        case "REMOVE_FROM_CART":
+            let objWithIdIndex = state.cart.findIndex((obj) => obj.id === action.payload);
+            let choosenProduct = state.cart.find(product => product.id === action.payload);
+            if(objWithIdIndex > -1){
+                state.cart.splice(objWithIdIndex,1);
+                state.totalPrice -= (choosenProduct.price*choosenProduct.pieces);
+                choosenProduct.pieces=1;
+            }
+            return {...state, cart:[...state.cart],totalPrice:state.totalPrice}
         default:
             return state;
     }

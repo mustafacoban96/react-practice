@@ -14,4 +14,8 @@ export const decreaseProduct = (id) =>{
     return {type:'DECREASE_PRODUCT', payload:id}
 }
 
+export const removeProductFromCart = (id) =>{
+    return {type:'REMOVE_FROM_CART',payload:id}
+}
+
 // addToCart func dispatch inside reducer ->>>> reducer
