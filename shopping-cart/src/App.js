@@ -1,14 +1,15 @@
 import './App.css';
 import { BrowserRouter as Router,Routes,Route } from 'react-router-dom';
-import { Home } from './pages/Home';
+import Home from './pages/Home';
 import { Navbar } from './components/Navbar';
+import { connect } from 'react-redux';
 
 
 
-function App() {
+function App(props) {
+  
   return (
     <div className="App">
-      
       <Router>
       <Navbar/>
         <Routes>
@@ -18,5 +19,13 @@ function App() {
     </div>
   );
 }
+const mapStateToProps = state =>{
+  return {
+    productList: state.items
+  }
+}
 
-export default App;
+// when calling connect funci it return new function.
+// and the new function take App as parameter.
+export default connect(mapStateToProps)(App);
+

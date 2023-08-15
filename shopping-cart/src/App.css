@@ -40,8 +40,10 @@
 
 
 .home-page{
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  column-gap: 10px;
+  justify-content: space-around;
 }
 .prod{
   margin: 20px;
