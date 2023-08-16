@@ -1,6 +1,11 @@
-import { AiFillCaretDown,AiFillCaretUp } from "react-icons/ai"
+import { AiFillCaretDown,AiFillCaretUp } from "react-icons/ai";
+import { connect } from "react-redux";
 
-export const Cart = () =>{
+const Cart = (props) =>{
+    console.log(props.cart);
+    console.log(props.totalPrice)
+
+
     return (
         
         
@@ -14,7 +19,7 @@ export const Cart = () =>{
                     <div className="cart-content-inside">
                         <img src="images/item1.jpg"/>
                         <div className="cart-process">
-                            <h3 style={{color:'#FF033E',fontSize:'1.2rem'}}>Winter cool</h3>
+                            <h3 style={{color:'#FF033E',fontSize:'1.2rem'}}>Winter body</h3>
                             <div>
                                 <p style={{marginTop:'6px'}}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, ex.</p>
                                 <h4 style={{marginTop:'6px'}}>Price: 45$</h4>
@@ -26,27 +31,21 @@ export const Cart = () =>{
                             </div>
                             <button className="remove-btn">Remove</button>
                         </div>
-                    </div>
-                    <div className="cart-content-inside">
-                        <img src="images/item1.jpg"/>
-                        <div className="cart-process">
-                            <h3 style={{color:'#FF033E'}}>Winter cool</h3>
-                            <div>
-                                <p style={{marginTop:'6px'}}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, ex.</p>
-                                <h4 style={{marginTop:'6px'}}>Price: 45$</h4>
-                                <h4 style={{marginTop:'6px'}}>Quantity: 2</h4>
-                            </div>
-                            <div className="up-down-area">
-                                <button className="up-down-btn"><AiFillCaretDown/></button>
-                                <button className="up-down-btn"><AiFillCaretUp/></button>
-                            </div>
-                            <button className="remove-btn">Remove</button>
-                        </div>
-                    </div>
-                    
+                    </div>                    
                 </div>
             </div>
             
         </div>
     )
 }
+
+
+
+const mapStateToProps = state =>{
+    return {
+        cart:state.addedItems,
+        totalPrice:state.total
+    }
+}
+
+export default connect(mapStateToProps)(Cart);
