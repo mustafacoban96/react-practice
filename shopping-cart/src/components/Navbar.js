@@ -16,7 +16,7 @@ export const Navbar = () =>{
             </div>
             <div className="cart-area">
             <Link to="/" style={{color: "#fff",fontSize:"1.2rem",letterSpacing:"5px",textDecoration:"none"}}>Shop</Link>
-            <Link to="/" style={{color: "#fff",fontSize:"1.2rem",letterSpacing:"5px",textDecoration:"none"}}>Cart <FaCartShopping/></Link>
+            <Link to="/cart" style={{color: "#fff",fontSize:"1.2rem",letterSpacing:"5px",textDecoration:"none"}}>Cart <FaCartShopping/></Link>
             </div>
         </div>
     )
