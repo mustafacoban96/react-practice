@@ -1,6 +1,6 @@
 import { AiFillCaretDown,AiFillCaretUp } from "react-icons/ai";
 import { connect } from "react-redux";
-import { removeFromCart,addQuantity } from "../actions/cartAction";
+import { removeFromCart,addQuantity,subQuantity } from "../actions/cartAction";
 
 const Cart = (props) =>{
    console.log(props.cart)
@@ -29,7 +29,7 @@ const Cart = (props) =>{
                                     <h4 style={{marginTop:'6px'}}>Quantity: {item.quantity}</h4>
                                 </div>
                                 <div className="up-down-area">
-                                    <button className="up-down-btn"><AiFillCaretDown/></button>
+                                    <button className="up-down-btn" onClick={() => props.subQuantity(item.id)}><AiFillCaretDown/></button>
                                     <button className="up-down-btn" onClick={() => props.addQuantity(item.id)}><AiFillCaretUp/></button>
                                 </div>
                                 <button className="remove-btn" onClick={() => props.removeFromCart(item.id)}>Remove</button>
@@ -55,7 +55,7 @@ const mapStateToProps = state =>{
         totalPrice:state.total
     }
 }
-const mapDispatchToProps = {removeFromCart,addQuantity}
+const mapDispatchToProps = {removeFromCart,addQuantity,subQuantity}
 
 
 export default connect(mapStateToProps,mapDispatchToProps)(Cart);

@@ -1,4 +1,4 @@
-import { ADD_TO_CART, REMOVE_ITEM,ADD_QUANTITY } from "../actions/action-types/cart-action-types";
+import { ADD_TO_CART, REMOVE_ITEM,ADD_QUANTITY, SUB_QUANTITY } from "../actions/action-types/cart-action-types";
 import { data } from "../data";
 
 
@@ -55,6 +55,31 @@ export const cartReducer = (state = initState,action) =>{
                 ...state,
                 total:state.total
             }
+        case SUB_QUANTITY:
+            let decreasedItem = state.addedItems.find(item => item.id === action.payload);
+            if(decreasedItem.quantity === 1){
+                let objWithIndex = state.addedItems.findIndex((obj) => obj.id === action.payload)
+                if(objWithIndex > -1){
+                    state.addedItems.splice(objWithIndex,1);
+                    state.total -= decreasedItem.price;
+                }
+
+                return {
+                    ...state,
+                    addedItems: [...state.addedItems],
+                    total:state.total
+                }
+            }else{
+                decreasedItem.quantity -= 1;
+                state.total -= decreasedItem.price;
+
+                return {
+                    ...state,
+                    total:state.total
+                }
+            }
+
+
         default:
             return state;
     }
