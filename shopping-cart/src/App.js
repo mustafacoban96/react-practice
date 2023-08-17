@@ -4,6 +4,8 @@ import Home from './pages/Home';
 import { Navbar } from './components/Navbar';
 import { connect } from 'react-redux';
 import Cart  from './pages/Cart';
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer} from "react-toastify";
 
 
 
@@ -11,6 +13,17 @@ function App(props) {
   
   return (
     <div className="App">
+       <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            theme="light"
+        />
       <Router>
       <Navbar/>
         <Routes>

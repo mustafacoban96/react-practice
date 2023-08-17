@@ -1,13 +1,58 @@
 import { AiFillCaretDown,AiFillCaretUp } from "react-icons/ai";
 import { connect } from "react-redux";
 import { removeFromCart,addQuantity,subQuantity } from "../actions/cartAction";
+import {toast}  from "react-toastify";
 
 const Cart = (props) =>{
-   console.log(props.cart)
+    const handleClick = (id) =>{
+        props.removeFromCart(id);
+        toast.success('Product is removed to your cart!', {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            
+            });
+    }
+
+    const upQuantityHandle = (id) =>{
+        props.addQuantity(id)
+        toast.success('The product is increased to your cart!', {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            
+            });
+    }
+    const downQuantityHandle = (id) =>{
+        props.subQuantity(id)
+        toast.success('The product is decreased to your cart!', {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            
+            });
+    }
+
 
 
     return (
         
+        <>
         
         <div className="cart-page">
             <div className="cart-page-body">
@@ -29,10 +74,10 @@ const Cart = (props) =>{
                                     <h4 style={{marginTop:'6px'}}>Quantity: {item.quantity}</h4>
                                 </div>
                                 <div className="up-down-area">
-                                    <button className="up-down-btn" onClick={() => props.subQuantity(item.id)}><AiFillCaretDown/></button>
-                                    <button className="up-down-btn" onClick={() => props.addQuantity(item.id)}><AiFillCaretUp/></button>
+                                    <button className="up-down-btn" onClick={() => downQuantityHandle(item.id)}><AiFillCaretDown/></button>
+                                    <button className="up-down-btn" onClick={() => upQuantityHandle(item.id)}><AiFillCaretUp/></button>
                                 </div>
-                                <button className="remove-btn" onClick={() => props.removeFromCart(item.id)}>Remove</button>
+                                <button className="remove-btn" onClick={() => handleClick(item.id)}>Remove</button>
                             </div>
                         </div>
                         ))}
@@ -44,6 +89,7 @@ const Cart = (props) =>{
             </div>
             
         </div>
+        </>
     )
 }
 
