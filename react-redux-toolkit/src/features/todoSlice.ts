@@ -25,13 +25,19 @@ const todoSlice = createSlice({
             const newTodo ={id: v4(),title: action.payload,completed:false}
             state.push(newTodo)
         },
-        remove: () => {}
+        remove: (state,action : PayloadAction<string>) => {
+            return state.filter((todo) => todo.id !== action.payload)
+        },
+
+        toggleCompleted: (state,action: PayloadAction<string>) => {
+            return state.map(todo => todo.id === action.payload ? {...todo, completed: !todo.completed} : todo)
+        }
     }
 })
 
 
 export default todoSlice.reducer;
-export const { add,remove } = todoSlice.actions; // we export actionCreator to use in components.
+export const { add,remove,toggleCompleted } = todoSlice.actions; // we export actionCreator to use in components.
 
 // we use uuid packet for id "npm i uuid" 
 // then we install uuid packet for ts "npm i --save-dev @types/uuid"

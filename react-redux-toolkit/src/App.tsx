@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from './store';
-import { add } from './features/todoSlice';
+import { add, remove, toggleCompleted } from './features/todoSlice';
 
 function App() {
   const [title,setTitle] = useState("");
@@ -10,12 +10,27 @@ function App() {
     dispatch(add(title));
     setTitle("");
   }
+  const onDelete = (id: string) =>{
+    dispatch(remove(id))
+  }
+
+  const toggle = (id: string) => {
+
+    dispatch(toggleCompleted(id));
+
+  }
   return (
     <div className="App">
       <input name='title' value={title} onChange={(e) => setTitle(e.currentTarget.value)}/>
       <button onClick={onSave}>SAVE</button>
       <ul>
-        {todos.map((todo) =>( <li key={todo.id}>{todo.title}</li>) )}
+        {todos.map((todo) =>( 
+        <li key={todo.id}>
+          <button onClick={() => toggle(todo.id)}>{todo.completed ? "unmarkedComp" : "markedComp"}</button>
+          <button onClick={() => onDelete(todo.id)}>Delete</button>
+          <span>{todo.title}</span>
+        </li>
+        ) )}
       </ul>
     </div>
   );
