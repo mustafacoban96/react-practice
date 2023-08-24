@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from './store';
 import { add, remove, toggleCompleted } from './features/todoSlice';
+import { fetchUser } from './features/userSlice';
 
 function App() {
   const [title,setTitle] = useState("");
   const todos = useAppSelector(state => state.todos)
+  const user = useAppSelector(state => state.user)
   const dispatch = useAppDispatch();
   const onSave = () =>{
     dispatch(add(title));
@@ -19,6 +21,8 @@ function App() {
     dispatch(toggleCompleted(id));
 
   }
+
+  const currentUser = user.data && user.data.results[0];
   return (
     <div className="App">
       <input name='title' value={title} onChange={(e) => setTitle(e.currentTarget.value)}/>
@@ -32,6 +36,10 @@ function App() {
         </li>
         ) )}
       </ul>
+      <button onClick={() => dispatch(fetchUser())}>Fetch User</button>
+      {user.isLoading && "Loading..."}
+      {user.error && user.error}
+      {currentUser && <div>name: {currentUser.name.title} {currentUser.name.first} {currentUser.name.last} Avatar: <img src={currentUser.picture.large}/></div>}
     </div>
   );
 }

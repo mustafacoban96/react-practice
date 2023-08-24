@@ -1,12 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch,TypedUseSelectorHook, useSelector } from "react-redux";
 import todoSlice from "../features/todoSlice";
+import userSlice from "../features/userSlice";
 
 const store = configureStore({
     reducer:{
         // we exported reducers and actions from todoSlice and we use them inside in reducer.
         todos:todoSlice,
         // we can use todos in components
+        //second video;
+        user:userSlice,
     }
 });
 
